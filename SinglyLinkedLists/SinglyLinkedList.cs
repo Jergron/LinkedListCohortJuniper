@@ -7,6 +7,9 @@ namespace SinglyLinkedLists
 {
     public class SinglyLinkedList
     {
+        private string list;
+        private readonly string value;
+
         public SinglyLinkedList()
         {
             // NOTE: This constructor isn't necessary, once you've implemented the constructor below.
@@ -37,7 +40,7 @@ namespace SinglyLinkedLists
 
         public void AddLast(string value)
         {
-            throw new NotImplementedException();
+            if (value == null) throw new NotImplementedException();
         }
 
         // NOTE: There is more than one way to accomplish this.  One is O(n).  The other is O(1).
@@ -53,7 +56,8 @@ namespace SinglyLinkedLists
 
         public string First()
         {
-            throw new NotImplementedException();
+            return value;
+            
         }
 
         public int IndexOf(string value)
