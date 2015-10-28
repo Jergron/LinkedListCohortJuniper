@@ -9,6 +9,8 @@ namespace SinglyLinkedLists
     {
         private string list;
         private readonly string value;
+        private SinglyLinkedListNode firstNode;
+        private SinglyLinkedListNode lastNode;
 
         public SinglyLinkedList()
         {
@@ -35,12 +37,20 @@ namespace SinglyLinkedLists
 
         public void AddFirst(string value)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void AddLast(string value)
         {
-            if (value == null) throw new NotImplementedException();
+            if (firstNode == null)
+            {
+                firstNode = new SinglyLinkedListNode(value);
+            }
+            else
+            {
+                // attach new nodes to the end of the list.
+            }
+            
         }
 
         // NOTE: There is more than one way to accomplish this.  One is O(n).  The other is O(1).
@@ -56,7 +66,13 @@ namespace SinglyLinkedLists
 
         public string First()
         {
-            return value;
+            if (firstNode == null)
+            {
+                return null;
+            } else
+            {
+                return firstNode.Value;
+            }
             
         }
 

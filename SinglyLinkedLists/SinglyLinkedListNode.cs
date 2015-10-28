@@ -18,15 +18,17 @@ namespace SinglyLinkedLists
             get { return next; }
             set
             {
-                next = value;
-                if (next == this)
+                if (this == value)
                 {
                     throw new ArgumentException();
-                }      
+                }
+                next = value;
             }
         }
 
         private string value;
+        private readonly string node;
+
         public string Value 
         {
             get { return value; }
@@ -45,6 +47,11 @@ namespace SinglyLinkedLists
             return node1.CompareTo(node2) > 0;
         }
 
+        public static implicit operator string (SinglyLinkedListNode v)
+        {
+            throw new NotImplementedException();
+        }
+
         public SinglyLinkedListNode(string value)
         {
             this.value = value;
@@ -61,12 +68,21 @@ namespace SinglyLinkedLists
 
         public bool IsLast()
         {
-            throw new NotImplementedException();
+       
+            if (this.Next == null)
+            {
+                return true;
+
+            } 
+                return false;
+          
         }
 
         public override string ToString()
         {
             return value;
         }
+
+        
     }
 }
