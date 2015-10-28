@@ -83,6 +83,15 @@ namespace SinglyLinkedLists
             return value;
         }
 
-        
+        public   bool AreEqual(Object expected, Object actual)
+        {
+            SinglyLinkedListNode singlyExpected = expected as SinglyLinkedListNode;
+            SinglyLinkedListNode singlyActual = actual as SinglyLinkedListNode;
+            if (singlyActual == null)
+            {
+                return false;
+            }
+            return node.AreEqual(singlyExpected, singlyActual);
+        }
     }
 }
