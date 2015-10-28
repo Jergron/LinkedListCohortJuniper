@@ -8,6 +8,9 @@ namespace SinglyLinkedLists
 {
     public class SinglyLinkedListNode : IComparable
     {
+        public string objName;
+        public string obj2Name;
+
         // Used by the visualizer.  Do not change.
         public static List<SinglyLinkedListNode> allNodes = new List<SinglyLinkedListNode>();
 
@@ -49,7 +52,7 @@ namespace SinglyLinkedLists
 
         public static implicit operator string (SinglyLinkedListNode v)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public SinglyLinkedListNode(string value)
@@ -83,15 +86,16 @@ namespace SinglyLinkedLists
             return value;
         }
 
-        public   bool AreEqual(Object expected, Object actual)
+
+        public override bool Equals(object obj)
         {
-            SinglyLinkedListNode singlyExpected = expected as SinglyLinkedListNode;
-            SinglyLinkedListNode singlyActual = actual as SinglyLinkedListNode;
-            if (singlyActual == null)
+            SinglyLinkedListNode objectRef = obj as SinglyLinkedListNode;
+
+            if( objectRef == null)
             {
                 return false;
             }
-            return node.AreEqual(singlyExpected, singlyActual);
+            return Value.Equals(objectRef.Value);
         }
     }
 }
