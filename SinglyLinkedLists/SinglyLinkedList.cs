@@ -7,10 +7,10 @@ namespace SinglyLinkedLists
 {
     public class SinglyLinkedList
     {
-        private string list;
-        private readonly string value;
+        protected string list;
         private SinglyLinkedListNode firstNode;
         private SinglyLinkedListNode lastNode;
+
 
         public SinglyLinkedList()
         {
@@ -48,9 +48,16 @@ namespace SinglyLinkedLists
             }
             else
             {
-                // attach new nodes to the end of the list.
+                lastNode = firstNode;
+                while (!lastNode.IsLast())
+                {
+                    lastNode = lastNode.Next;
+                }
+
+                lastNode.Next = new SinglyLinkedListNode(value);
             }
             
+
         }
 
         // NOTE: There is more than one way to accomplish this.  One is O(n).  The other is O(1).
@@ -61,7 +68,41 @@ namespace SinglyLinkedLists
 
         public string ElementAt(int index)
         {
-            throw new NotImplementedException();
+            if (firstNode != null && index >= 0)
+            {
+                SinglyLinkedListNode node = firstNode;
+                for (int i = 0; i <= index; i++)
+                {
+                    if (index == i)
+                    {
+                        break;
+                    }
+                    if (node.Next == null)
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
+                    node = node.Next;
+                }
+
+                return node.Value;
+            }
+            else if (index < 0)
+            {
+        
+                SinglyLinkedListNode node = firstNode;
+                int length = 1;
+                while (!node.IsLast())
+                {
+                    length++;
+                    node = node.Next;
+                }
+
+                return this.ElementAt(length + index); //Positive index/offset
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException();
+            }
         }
 
         public string First()
@@ -91,7 +132,14 @@ namespace SinglyLinkedLists
         // HINT 3: If you highlight code and right click, you can use the refactor menu to extract a method for you...
         public string Last()
         {
-            throw new NotImplementedException();
+            if (firstNode == null)
+            {
+                return null;
+            }
+            else
+            {
+                return this.ElementAt(-1);
+            }
         }
 
         public void Remove(string value)
@@ -106,9 +154,46 @@ namespace SinglyLinkedLists
 
         public string[] ToArray()
         {
-            throw new NotImplementedException();
-        }
+            if (firstNode == null)
+            {
+                return new string[] { };
 
+            } 
+            else
+            {
+               
+              
+                return new string[] { ElementAt(0) };
+            }
+        }
+        public override string ToString()
+        {
+            string left_br = "{";
+            string right_br = "}";
+            string space = " ";
+            string comma = ",";
+            string quote = "\"";
+            StringBuilder s = new StringBuilder(left_br);
+            SinglyLinkedListNode current_node = firstNode;
+            while(current_node != null)
+            {
+                s.Append(space);
+                s.Append(quote);
+                s.Append(current_node.Value);
+                s.Append(quote);
+                if (current_node.IsLast())
+                {
+                    break;
+
+                } else
+                {
+                    s.Append(comma);
+                }
+                current_node = current_node.Next;
+            }
+            s.Append(space + right_br);
+            return s.ToString();
+        }
 
     }
 }

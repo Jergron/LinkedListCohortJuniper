@@ -49,6 +49,15 @@ namespace UnitTestSinglyLinkedLists
         }
 
         [TestMethod]
+        public void ElementAtBar()
+        {
+            SinglyLinkedList list = new SinglyLinkedList();
+            list.AddLast("foo");
+            list.AddLast("bar");
+            Assert.AreEqual("bar", list.ElementAt(1));
+        }
+
+        [TestMethod]
         public void ElementAt1()
         {
             SinglyLinkedList list = new SinglyLinkedList();
@@ -86,7 +95,7 @@ namespace UnitTestSinglyLinkedLists
             list.AddLast("foo");
             list.AddLast("bar");
             list.AddLast("grille");
-            list.ElementAt(-2);
+            Assert.AreEqual("bar", list.ElementAt(-2));
         }
         
         [TestMethod]

@@ -30,7 +30,7 @@ namespace SinglyLinkedLists
         }
 
         private string value;
-        private readonly string node;
+        
 
         public string Value 
         {
@@ -66,19 +66,22 @@ namespace SinglyLinkedLists
         // READ: http://msdn.microsoft.com/en-us/library/system.icomparable.compareto.aspx
         public int CompareTo(Object obj)
         {
-            throw new NotImplementedException();
+            SinglyLinkedListNode objectRef = obj as SinglyLinkedListNode;
+
+            if (obj == null)
+            {
+                return 0;
+            }      
+           else
+            {
+                return Value.CompareTo(objectRef.Value);
+            }
+          
         }
 
         public bool IsLast()
         {
-       
-            if (this.Next == null)
-            {
-                return true;
-
-            } 
-                return false;
-          
+            return (Next == null);        
         }
 
         public override string ToString()
@@ -95,7 +98,13 @@ namespace SinglyLinkedLists
             {
                 return false;
             }
-            return Value.Equals(objectRef.Value);
+            return Value.Equals(objectRef.Value); 
         }
+
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
+
     }
 }
